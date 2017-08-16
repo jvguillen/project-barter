@@ -1,0 +1,19 @@
+{
+  "name": "project-barter",
+  "version": "1.0.0",
+  "description": "Project Barto POC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvguillen/project-barter.git"
+  },
+  "author": "Jose Guillen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jvguillen/project-barter/issues"
+  },
+  "homepage": "https://github.com/jvguillen/project-barter#readme"
+}
