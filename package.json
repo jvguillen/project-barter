@@ -1,12 +1,23 @@
 {
   "name": "project-barter",
   "version": "0.0.1",
+  "description": "Project Barto POC",
   "private": true,
   "author": "Jose Guillen",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/www",
     "dev": "nodemon -L ./bin/www 3000"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvguillen/project-barter.git"
+  },
+  "author": "Jose Guillen",
+  "bugs": {
+    "url": "https://github.com/jvguillen/project-barter/issues"
+  },
+  "homepage": "https://github.com/jvguillen/project-barter#readme",
   "dependencies": {
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
