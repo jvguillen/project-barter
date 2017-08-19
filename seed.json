@@ -1,5 +1,6 @@
 {
-	"undefined": "localhost/bartoapp_local",
+	"undefined": "localhost/bartoapp_dev",
 	"dev": "localhost/bartoapp_dev",
+	"staging": "localhost/bartoapp_staging",
 	"prod": "localhost/bartoapp_prod"
 }
