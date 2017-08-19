@@ -1,5 +1,6 @@
 "user strict";
 
+const config = require('./config');
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -10,6 +11,12 @@ const helmet = require('helmet')
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+
+// const db = require('./db');
+//TODO: Move db settings into db.js
+const mongo = require('mongodb');
+const monk = require('monk');
+const db = monk(`${config.db.host}:${config.db.port}/${config.db.name}`);
 
 const app = express();
 
@@ -25,6 +32,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
+// Make our db accessible to our router
+app.use(function(req, res, next){
+    req.db = db;
+    next();
+});
 
 app.use('/', index);
 app.use('/users', users);
