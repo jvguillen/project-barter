@@ -1,33 +1,33 @@
 [{
-  "_id": "ObjectId(\"5999bbe1cfff5b0e80c1bca4\")",
-  "firstname": "Jose",
-  "lastname": "Guillen",
-  "username": "joseguillen",
-  "password": "somepassword",
-  "age": 29,
-  "email": "jose@barto.com",
-  "updated": "",
-  "active": true
+    "_id" : {"$oid": "5999f68a792f141ef95310be"},
+    "firstname" : "Jose",
+    "lastname" : "Guillen",
+    "username" : "joseguillen",
+    "password" : "somepassword",
+    "age" : 29,
+    "email" : "jose@barto.com",
+    "updated" : { "$timestamp": { "t": 30, "i": 1 } },
+    "active" : true
 },
 {
-  "_id": "ObjectId(\"5999bbe1cfff5b0e80c1bca5\")",
+  "_id" : {"$oid": "5999f9f82738f11fb7d03c7b"},
   "firstname": "Wilhelm",
   "lastname": "Siso",
   "username": "wilcho",
   "password": "somepassword",
   "age": 29,
   "email": "wilcho@barto.com",
-  "updated": "",
+  "updated" : { "$timestamp": { "t": 30, "i": 1 } },
   "active": true
 },
 {
-  "_id": "ObjectId(\"5999bbe1cfff5b0e80c1bca6\")",
+  "_id" : {"$oid": "5999f9f82738f11fb7d03c7c"},
   "firstname": "Jane",
   "lastname": "Doe",
   "username": "janedoe",
   "password": "",
   "age": 29,
   "email": "jane.doe@barto.com",
-  "updated": "",
+  "updated" : { "$timestamp": { "t": 30, "i": 1 } },
   "active": false
 }]

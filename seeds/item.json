@@ -1,32 +1,32 @@
 [{
   "name": "Camera",
   "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
-  "_user": "ObjectId(\"5999bbe1cfff5b0e80c1bca4\")",
+  "_user": {"$oid": "5999f68a792f141ef95310be"},
   "quality": "Great",
   "active": true,
-  "updated": ""
+  "updated" : { "$timestamp": { "t": 30, "i": 1 } }
 },
 {
   "name": "Coffee Table",
   "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
-  "_user": "ObjectId(\"5999bbe1cfff5b0e80c1bca4\")",
+  "_user": {"$oid": "5999f9f82738f11fb7d03c7b"},
   "quality": "Needs love",
   "active": true,
-  "updated": ""
+  "updated" : { "$timestamp": { "t": 30, "i": 1 } }
 },
 {
   "name": "Chair",
   "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
-  "_user": "ObjectId(\"5999bbe1cfff5b0e80c1bca5\")",
+  "_user": {"$oid": "5999f9f82738f11fb7d03c7b"},
   "quality": "Usable",
   "active": true,
-  "updated": ""
+  "updated" : { "$timestamp": { "t": 30, "i": 1 } }
 },
 {
   "name": "Eggs",
   "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
-  "_user": "ObjectId(\"5999bbe1cfff5b0e80c1bca5\")",
+  "_user": {"$oid": "5999f68a792f141ef95310be"},
   "quality": "Broken",
   "active": true,
-  "updated": ""
+  "updated" : { "$timestamp": { "t": 30, "i": 1 } }
 }]
