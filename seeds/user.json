@@ -1,4 +1,5 @@
 [{
+  "_id": "ObjectId(\"5999bbe1cfff5b0e80c1bca4\")",
   "firstname": "Jose",
   "lastname": "Guillen",
   "username": "joseguillen",
@@ -9,6 +10,7 @@
   "active": true
 },
 {
+  "_id": "ObjectId(\"5999bbe1cfff5b0e80c1bca5\")",
   "firstname": "Wilhelm",
   "lastname": "Siso",
   "username": "wilcho",
@@ -19,6 +21,7 @@
   "active": true
 },
 {
+  "_id": "ObjectId(\"5999bbe1cfff5b0e80c1bca6\")",
   "firstname": "Jane",
   "lastname": "Doe",
   "username": "janedoe",
