@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const itemSchema = mongoose.Schema({
     name: String,
     images: [String],
-    _user: { type: Schema.Types.ObjectId, ref: 'User' },
+    _user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     quality: String,
     active: Boolean,
     updated: { type: Date, default: Date.now }
