@@ -1,0 +1,32 @@
+[{
+  "name": "Camera",
+  "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
+  "_user": "ObjectId(\"5999bbe1cfff5b0e80c1bca4\")",
+  "quality": "Great",
+  "active": true,
+  "updated": ""
+},
+{
+  "name": "Coffee Table",
+  "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
+  "_user": "ObjectId(\"5999bbe1cfff5b0e80c1bca4\")",
+  "quality": "Needs love",
+  "active": true,
+  "updated": ""
+},
+{
+  "name": "Chair",
+  "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
+  "_user": "ObjectId(\"5999bbe1cfff5b0e80c1bca5\")",
+  "quality": "Usable",
+  "active": true,
+  "updated": ""
+},
+{
+  "name": "Eggs",
+  "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
+  "_user": "ObjectId(\"5999bbe1cfff5b0e80c1bca5\")",
+  "quality": "Broken",
+  "active": true,
+  "updated": ""
+}]
