@@ -1,5 +1,6 @@
 "user strict";
 
+const _ = require("lodash");
 const config = require('./config');
 const express = require('express');
 const path = require('path');
@@ -13,17 +14,16 @@ const response = require('./lib/response');
 const index = require('./routes/index');
 const users = require('./routes/users');
 
-// const db = require('./db');
-//TODO: Move db settings into db.js
-const mongo = require('mongodb');
-const monk = require('monk');
-const db = monk(`${config.db.host}:${config.db.port}/${config.db.name}`);
-
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+const db = require('./db');
+db.then(function(db) {
+  // Make db accessible to our routes
+  app.use(function(req, res, next){
+      req.db = db;
+      next();
+  });
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -33,11 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
-// Make our db accessible to our router
-app.use(function(req, res, next){
-    req.db = db;
-    next();
-});
+
 
 app.use('/', index);
 app.use('/users', users);
@@ -55,9 +51,10 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+
   // render the error page
   res.status(err.status || 500);
-  res.json(response(res, '', res.locals.message));
+  res.json(response(res, null, {errorMessage: err.message, stack: err.stack}));
 
 });
 
