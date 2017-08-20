@@ -1,18 +1,9 @@
-"use strict";
-
 const express = require('express');
-const router = express.Router();
 const response = require('../lib/response');
 const User = require('../models/user');
 
+const router = express.Router();
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  const db = req.db;
-
-  User.find().then(function(users) {
-    res.status(200).json(response(res, users));
-  });
-
-});
+router.get('/', (req, res) => User.find().then(users => res.status(200).json(response(res, users))));
 
 module.exports = router;

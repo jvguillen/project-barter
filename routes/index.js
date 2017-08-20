@@ -1,12 +1,9 @@
-"user strict";
-
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 const response = require('../lib/response');
 
+const router = express.Router();
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-   res.status(200).json(response(res, "Connected!"));
-});
+router.get('/', (req, res) => res.status(200).json(response(res, 'Connected!')));
 
 module.exports = router;
