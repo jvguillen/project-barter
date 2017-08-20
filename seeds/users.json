@@ -2,17 +2,29 @@
   "firstname": "Jose",
   "lastname": "Guillen",
   "username": "joseguillen",
-  "password": "somepassword"
+  "password": "somepassword",
+  "age": 29,
+  "email": "jose@barto.com",
+  "updated": "",
+  "active": true
 },
 {
   "firstname": "Wilhelm",
   "lastname": "Siso",
   "username": "wilcho",
-  "password": ""
+  "password": "somepassword",
+  "age": 29,
+  "email": "wilcho@barto.com",
+  "updated": "",
+  "active": true
 },
 {
   "firstname": "Jane",
   "lastname": "Doe",
   "username": "janedoe",
-  "password": ""
+  "password": "",
+  "age": 29,
+  "email": "jane.doe@barto.com",
+  "updated": "",
+  "active": false
 }]
