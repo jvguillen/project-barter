@@ -12,6 +12,7 @@ const response = require('./lib/response');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const items = require('./routes/items');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(helmet());
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/items', items);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
