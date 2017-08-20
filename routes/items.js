@@ -9,7 +9,9 @@ const Item = require('../models/item');
 router.get('/', function(req, res, next) {
   const db = req.db;
 
-  Item.find().then(function(items) {
+  Item.find()
+  .populate('_user')
+  .then(function(items) {
     res.status(200).json(response(res, items));
   });
 
