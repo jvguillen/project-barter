@@ -5,9 +5,11 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const response = require('./lib/response');
 
+// require routes
 const index = require('./routes/index');
 const users = require('./routes/users');
 const items = require('./routes/items');
+// add new routes before this line
 
 const app = express();
 const db = require('./db');
@@ -26,10 +28,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
 
-
+// enable routes
 app.use('/', index);
 app.use('/users', users);
 app.use('/items', items);
+// add new routes before this line
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
