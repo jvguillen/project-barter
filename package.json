@@ -2,7 +2,7 @@
   "name": "project-barter",
   "version": "0.0.1",
   "description": "Project Barto POC",
-  "main" : "app.js",
+  "main": "app.js",
   "private": true,
   "author": "Jose Guillen",
   "scripts": {
@@ -30,7 +30,9 @@
     "lodash": "^4.17.4",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.7",
-    "morgan": "~1.8.1"
+    "morgan": "~1.8.1",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^4.5.0",
