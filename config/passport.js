@@ -1,11 +1,12 @@
-/* Documentation
+/*
+ * Documentation
  * https://www.danielgynn.com/node-auth-part2/
- * https://github.com/danielgynn/express-authentication */
+ * https://github.com/danielgynn/express-authentication
+ */
 
-var LocalStrategy = require('passport-local').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('../models/user');
-var configAuth = require('./auth');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const User = require('../models/user');
+const configAuth = require('./auth');
 
 module.exports = function(passport) {
 
@@ -19,49 +20,6 @@ module.exports = function(passport) {
     });
   });
 
-  passport.use('local-signup', new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true,
-  },
-  function(req, email, password, done) {
-    process.nextTick(function() {
-      User.findOne({ 'local.email':  email }, function(err, user) {
-        if (err)
-            return done(err);
-        if (user) {
-          return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-        } else {
-          var newUser = new User();
-          newUser.local.email = email;
-          newUser.local.password = newUser.generateHash(password);
-          newUser.save(function(err) {
-            if (err)
-              throw err;
-            return done(null, newUser);
-          });
-        }
-      });
-    });
-  }));
-
-  passport.use('local-login', new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true,
-  },
-  function(req, email, password, done) {
-    User.findOne({ 'local.email':  email }, function(err, user) {
-      if (err)
-          return done(err);
-      if (!user)
-          return done(null, false, req.flash('loginMessage', 'No user found.'));
-      if (!user.validPassword(password))
-          return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
-      return done(null, user);
-    });
-  }));
-
   passport.use(new GoogleStrategy({
     clientID: configAuth.googleAuth.clientID,
     clientSecret: configAuth.googleAuth.clientSecret,
@@ -71,11 +29,11 @@ module.exports = function(passport) {
       process.nextTick(function() {
         User.findOne({ 'google.id': profile.id }, function(err, user) {
           if (err)
-            return done(err);
+            return done(err); // throw err
           if (user) {
-            return done(null, user);
+            return done(null, user); // return user found
           } else {
-            var newUser = new User();
+            let newUser = new User(); // create a new user
             newUser.google.id = profile.id;
             newUser.google.token = token;
             newUser.google.name = profile.displayName;

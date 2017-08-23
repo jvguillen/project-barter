@@ -3,10 +3,18 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+
+// oAuth
+const passport = require('passport');
+
+// express session handle
+const session = require('express-session');
+
 const response = require('./lib/response');
 
 // require routes
 const index = require('./routes/index');
+const auth = require('./routes/auth');
 const users = require('./routes/users');
 const items = require('./routes/items');
 // add new routes before this line
@@ -28,8 +36,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(helmet());
 
+// oAuth
+app.use(session({ secret: 'shhsecret', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
 // enable routes
 app.use('/', index);
+app.use('/auth', auth);
 app.use('/users', users);
 app.use('/items', items);
 // add new routes before this line
