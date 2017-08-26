@@ -40,7 +40,7 @@ app.use(helmet());
 app.use(session({ secret: 'shhsecret', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport);
+require('./handlers/passport')(passport);
 
 // enable routes
 app.use('/api/:version/', index);
