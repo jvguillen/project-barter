@@ -11,6 +11,4 @@ router.get('/', (req, res) => {
     .then(items => res.status(200).json(response(res, items)));
 });
 
-router.get('/news', (req, res) => console.log(req.params));
-
 module.exports = router;

@@ -1,5 +1,4 @@
 const express = require('express');
-const routeVersions = require('express-routes-versioning')();
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -44,10 +43,10 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 // enable routes
-app.use('/', index);
-app.use('/auth', auth);
-app.use('/users', users);
-app.use('/items', items);
+app.use('/api/:version/', index);
+app.use('/api/:version/auth', auth);
+app.use('/api/:version/users', users);
+app.use('/api/:version/items', items);
 // add new routes before this line
 
 // catch 404 and forward to error handler
