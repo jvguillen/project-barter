@@ -1,4 +1,5 @@
 const express = require('express');
+const routeVersions = require('express-routes-versioning')();
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
