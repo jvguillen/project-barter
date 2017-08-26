@@ -2,12 +2,13 @@
   "name": "project-barter",
   "version": "0.0.1",
   "description": "Project Barto POC",
-  "main" : "app.js",
+  "main": "app.js",
   "private": true,
   "author": "Jose Guillen",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/www",
+    "predev": "npm run eslint",
     "dev": "nodemon -L ./bin/www 3000",
     "seed": "node_modules/.bin/seed",
     "eslint": "eslint ./*.js ./**/*.js"
