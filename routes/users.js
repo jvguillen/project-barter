@@ -1,5 +1,4 @@
 const express = require('express');
-const passport = require('passport');
 const response = require('../lib/response');
 const User = require('../models/user');
 
