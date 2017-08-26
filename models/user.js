@@ -4,14 +4,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  firstname: {type: String, required: false, min: [3, 'Supply at least 3 characters'] },
-  lastname: {type: String, required: false, min: [3, 'Supply at least 3 characters'] },
-  age: {type: Number, required: false},
-  email: { type: String, required: true, validate: {
-      validator: (v) => {
-        return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(v);
-      },
-      message: '{VALUE} is not a valid email!'
+  firstname: { type: String, required: false, min: [3, 'Supply at least 3 characters'] },
+  lastname: { type: String, required: false, min: [3, 'Supply at least 3 characters'] },
+  age: { type: Number, required: false },
+  email: {
+    type: String,
+    required: true,
+    validate: {
+      validator: v => /^([\w-.]+@([\w-]+.)+[\w-]{2,4})?$/.test(v),
+      message: '{VALUE} is not a valid email!',
     },
   },
   active: { type: Boolean, required: false, default: true },
