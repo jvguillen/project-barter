@@ -1,6 +1,7 @@
 {
     "extends": "airbnb-base",
     "rules": {
-      "import/no-dynamic-require": 1
+      "import/no-dynamic-require": 1,
+      "linebreak-style": 0
     }
 }
