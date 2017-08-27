@@ -10,7 +10,12 @@ module.exports = {
     googleAuth: {
       clientID: process.env.AUTH_GOOGLE_CLIENT_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
-      callbackURL: process.env.AUTH_GOOGLE_CALLBACK,
+      callbackURL: process.env.AUTH_GOOGLE_CALLBACK_URL,
+    },
+    facebookAuth: {
+      clientID: process.env.AUTH_FB_CLIENT_ID,
+      clientSecret: process.env.AUTH_FB_SECRET,
+      callbackURL: process.env.AUTH_FB_CALLBACK_URL,
     },
   },
   logging: false,
