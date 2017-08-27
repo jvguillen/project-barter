@@ -21,6 +21,13 @@ const userSchema = new Schema({
     email: { type: String },
     name: { type: String },
   },
+  facebook: {
+    id: { type: String },
+    token: { type: String },
+    email: { type: String },
+    name: { type: String },
+    username: { type: String },
+  },
   status: { type: Boolean, required: false, default: true },
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },
