@@ -15,6 +15,7 @@ describe('Items', () => {
       chai.request(app)
         .get('/api/v1/items')
         .end((err, res) => {
+          if(err) return done(err);
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.data.should.be.a('array');
