@@ -6,6 +6,7 @@ const itemSchema = mongoose.Schema({
   _user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   quality: String,
   active: Boolean,
+  created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },
 }, { collection: 'item' });
 
