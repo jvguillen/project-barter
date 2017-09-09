@@ -32,7 +32,9 @@ db.then((conn) => {
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ type: 'application/json' }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
 app.use(cookieParser());
 app.use(helmet());
 
@@ -40,7 +42,7 @@ app.use(helmet());
 app.use(session({ secret: 'shhsecret', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport);
+require('./handlers/passport')(passport);
 
 // enable routes
 app.use('/api/:version/', index);
