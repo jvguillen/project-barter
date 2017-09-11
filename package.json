@@ -8,7 +8,6 @@
   "scripts": {
     "test": "mocha tests",
     "start": "node ./bin/www",
-    "predev": "npm run eslint",
     "dev": "nodemon -L ./bin/www 3000",
     "seed": "node_modules/.bin/seed",
     "eslint": "eslint ./*.js ./**/*.js"
@@ -25,6 +24,7 @@
     "bluebird": "^3.5.0",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "express-session": "^1.15.5",

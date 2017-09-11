@@ -4,6 +4,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
+// Crossdomain module
+const cors = require('cors');
+
 // oAuth
 const passport = require('passport');
 
@@ -36,6 +39,13 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(cookieParser());
+app.use(cors({
+  allow : {
+    origin: '*',
+    methods: 'GET,PATCH,PUT,POST,DELETE,HEAD,OPTIONS',
+    headers: 'Content-Type, Authorization, Content-Length, X-Requested-With, X-HTTP-Method-Override'
+  }
+}));
 app.use(helmet());
 
 // oAuth
