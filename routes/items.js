@@ -62,15 +62,14 @@ router.post('/new', (req, res) => {
 	req.checkBody('name', 'The name is required').notEmpty();
   	req.checkBody('quality', 'You must supply the quality of the item').notEmpty();
 
-  	let errors = req.validationErrors();
+  	const errors = req.validationErrors();
 
-  	const item = new Item(
-  		{name: req.body.name, quality: req.body.quality	}
-  	);
+  	console.dir(req.body);
 
-  	if(error) { return res.status(200).json(response(res, { item: item, errors: errors })); }
+  	if(errors) { return res.status(200).json(response(res, { errors: errors })); }
 
   	else {
+  		const item = new Item({ name: req.body.name, quality: req.body.quality });
   		item.save().then(err => res.status(200).json(response(res, {item: item, err: err})
 			));
   	}

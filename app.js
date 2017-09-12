@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator'); // form validator
 const helmet = require('helmet');
 
 // Crossdomain module
@@ -38,6 +39,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
+app.use(expressValidator()); // validator library
 app.use(cookieParser());
 app.use(cors({
   allow : {
