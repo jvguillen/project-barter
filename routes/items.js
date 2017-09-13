@@ -18,41 +18,59 @@ router.get('/item/:id', (req, res) => {
 		.then(item => res.status(200).json(response(res, item)));
 });
 
-router.get('/item/:id/update', (req, res) => {
-	// Sanitize id passed in. 
+router.post('/item/:id/update', (req, res) => {
+	// Sanitize id passed in.
 	req.sanitize('id').escape();
 	req.sanitize('id').trim();
 
-	req.checkBody('name', 'The name is required').notEmpty();
-	req.checkBody('images', 'An image is required').notEmpty();
-	req.checkBody('quality', 'You must supply the quality of the item').notEmpty();
-
 	req.sanitize('name').escape();
+	req.sanitize('quality').escape();
 
-	const item = new Item(
-	{ name: req.body.name, images: images, quality: req.body.quality }
-	);
+	// validate input fields
+	req.checkBody('name', 'The name is required').notEmpty();
+  req.checkBody('quality', 'You must supply the quality of the item').notEmpty();
+	req.checkBody('active', 'You must supply the status of the item').notEmpty();
 
-  	const errors = req.validationErrors();
+	const err = req.validationErrors();
 
-    if (errors) { return res.status(200).json(response(res, { item: item, errors: errors })); }
+	if(err) { return res.status(200).json(response(res, { err: err })) }
 
-    else {
-    	Item.findByIdAndUpdate(req.params.id, item, {}).then((err, item) => {
-            res.status(200).json(response(res, {item: item, err: err})
-			)
-        });
-    }
+	else {
 
+		console.log(`El id es ${req.params.id}`);
+		Item.findById(req.params.id).then((err, item) => {
+			if(err) { return res.status(200).json(response(res, { err: err })) }
+
+			else {
+				item.name = req.body.name;
+				item.quality = req.body.quality;
+				item.active = req.body.active;
+
+				// Data from form is valid. Update the record.
+				Item.findByIdAndUpdate(req.params.id, item, {}).then(err => res.status(200).json(response(res, { item: item, err: err })));
+			}
+		});
+	}
 });
 
-router.get('/item/:id/delete', (req, res) => {
-	Item.findById(req.params.id);
+router.post('/item/:id/delete', (req, res) => {
+	// Sanitize id passed in.
+	req.sanitize('id').escape();
+	req.sanitize('id').trim();
 
+	Item.findById(req.params.id)
+		.then((err, item) => {
+			if(err) { return res.status(200).json(response(res, { err: err })) }
 
+			else {
 
-	Item.find()
-    	.then(items => res.status(200).json(response(res, items)));
+				const item = new Item({ deleted: true });
+
+				// Data from form is valid. Update the record.
+				Item.findByIdAndUpdate(req.params.id, item, {}).then(err => res.status(200).json(response(res, { item: item, err: err })));
+
+			}
+		});
 });
 
 router.get('/user/:id', (req, res) => {
@@ -61,27 +79,19 @@ router.get('/user/:id', (req, res) => {
 
 router.post('/new', (req, res) => {
 
+	// validate input fields
 	req.checkBody('name', 'The name is required').notEmpty();
-  	req.checkBody('quality', 'You must supply the quality of the item').notEmpty();
+  req.checkBody('quality', 'You must supply the quality of the item').notEmpty();
 
-  	const errors = req.validationErrors();
+	const errors = req.validationErrors();
 
-  	console.dir(req.body);
+	if(errors) { return res.status(200).json(response(res, { errors: errors })); }
 
-  	if(errors) { return res.status(200).json(response(res, { errors: errors })); }
+	else {
 
-  	else {
-
-  		const debug = true;
-  		let idValue = req;
-
-  		if(debug)
-  			idValue = '59a1a10ae642bd16c42ab7e7';
-
-  		const item = new Item({ name: req.body.name, quality: req.body.quality, _user: idValue });
-  		item.save().then(err => res.status(200).json(response(res, {item: item, err: err})
-			));
-  	}
+		const item = new Item({ name: req.body.name, quality: req.body.quality, _user: req.body.user });
+		item.save().then(err => res.status(200).json(response(res, { item: item, err: err })));
+	}
 });
 
 module.exports = router;
