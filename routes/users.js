@@ -7,6 +7,6 @@ const router = express.Router({ mergeParams: true });
 router.get('/', (req, res) => User.find().then(users => res.status(200).json(response(res, users))));
 
 /* GET user profile page. */
-router.get('/profile', (req, res) => res.status(200).json(response(res, 'Logged In')));
+router.get('/profile', (req, res) => res.status(200).json(response(res, req.user._id)));
 
 module.exports = router;

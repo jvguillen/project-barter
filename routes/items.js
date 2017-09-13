@@ -69,7 +69,7 @@ router.post('/new', (req, res) => {
   	if(errors) { return res.status(200).json(response(res, { errors: errors })); }
 
   	else {
-  		const item = new Item({ name: req.body.name, quality: req.body.quality });
+  		const item = new Item({ name: req.body.name, quality: req.body.quality, _user:req.session.passport.user });
   		item.save().then(err => res.status(200).json(response(res, {item: item, err: err})
 			));
   	}
