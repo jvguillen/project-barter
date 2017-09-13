@@ -13,7 +13,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/item/:id', (req, res) => {
-
+	Item.findById(req.params.id)
+		.populate('_user')
+		.then(item => res.status(200).json(response(res, item)));
 });
 
 router.get('/item/:id/update', (req, res) => {
@@ -69,7 +71,14 @@ router.post('/new', (req, res) => {
   	if(errors) { return res.status(200).json(response(res, { errors: errors })); }
 
   	else {
-  		const item = new Item({ name: req.body.name, quality: req.body.quality, _user:req.session.passport.user });
+
+  		const debug = true;
+  		let idValue = req;
+
+  		if(debug)
+  			idValue = '59a1a10ae642bd16c42ab7e7';
+
+  		const item = new Item({ name: req.body.name, quality: req.body.quality, _user: idValue });
   		item.save().then(err => res.status(200).json(response(res, {item: item, err: err})
 			));
   	}
