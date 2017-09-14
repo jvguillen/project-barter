@@ -37,19 +37,10 @@ router.post('/item/:id/update', (req, res) => {
 
 	else {
 
-		console.log(`El id es ${req.params.id}`);
-		Item.findById(req.params.id).then((err, item) => {
-			if(err) { return res.status(200).json(response(res, { err: err })) }
+		const item = new Item({ name: req.body.name, quality: req.body.quality, active: req.body.active });
 
-			else {
-				item.name = req.body.name;
-				item.quality = req.body.quality;
-				item.active = req.body.active;
+		Item.findByIdAndUpdate(req.params.id, item, {}).then(err => res.status(200).json(response(res, { item: item, err: err })));
 
-				// Data from form is valid. Update the record.
-				Item.findByIdAndUpdate(req.params.id, item, {}).then(err => res.status(200).json(response(res, { item: item, err: err })));
-			}
-		});
 	}
 });
 
@@ -58,23 +49,14 @@ router.post('/item/:id/delete', (req, res) => {
 	req.sanitize('id').escape();
 	req.sanitize('id').trim();
 
-	Item.findById(req.params.id)
-		.then((err, item) => {
-			if(err) { return res.status(200).json(response(res, { err: err })) }
+	const item = new Item({ deleted: true });
 
-			else {
+	Item.findByIdAndUpdate(req.params.id, item, {}).then(err => res.status(200).json(response(res, { item: item, err: err })));
 
-				const item = new Item({ deleted: true });
-
-				// Data from form is valid. Update the record.
-				Item.findByIdAndUpdate(req.params.id, item, {}).then(err => res.status(200).json(response(res, { item: item, err: err })));
-
-			}
-		});
 });
 
 router.get('/user/:id', (req, res) => {
-
+	Item.find({ '_user': req.params.id }).then(item => res.status(200).json(response(res, item)));
 });
 
 router.post('/new', (req, res) => {
