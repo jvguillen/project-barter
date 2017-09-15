@@ -21,6 +21,7 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
 const items = require('./routes/items');
+const images = require('./routes/images');
 // add new routes before this line
 
 const app = express();
@@ -61,6 +62,7 @@ app.use('/api/:version/', index);
 app.use('/api/:version/auth', auth);
 app.use('/api/:version/users', users);
 app.use('/api/:version/items', items);
+app.use('/api/:version/images', images);
 // add new routes before this line
 
 // catch 404 and forward to error handler

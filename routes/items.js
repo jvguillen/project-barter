@@ -1,7 +1,6 @@
 const express = require('express');
 const response = require('../lib/response');
 const Item = require('../models/item');
-const Image = require('../models/image');
 
 const router = express.Router({ mergeParams: true });
 
@@ -65,9 +64,9 @@ router.post('/new', (req, res) => {
 	req.checkBody('name', 'The name is required').notEmpty();
   req.checkBody('quality', 'You must supply the quality of the item').notEmpty();
 
-	const errors = req.validationErrors();
+	const err = req.validationErrors();
 
-	if(errors) { return res.status(200).json(response(res, { errors: errors })); }
+	if(err) { return res.status(200).json(response(res, { errors: err })); }
 
 	else {
 
