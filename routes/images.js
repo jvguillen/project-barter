@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer'); // file upload library
 const response = require('../lib/response');
 const Image = require('../models/image');
 
@@ -58,7 +59,7 @@ router.get('/item/:id', (req, res) => {
 	Image.find({ '_item': req.params.id }).then(images => res.status(200).json(response(res, images)));
 });
 
-router.post('/new', (req, res) => {
+router.post('/new', multer({ dest: 'uploads/' }).single('image'), (req, res) => {
 
 	// validate input fields
 	req.checkBody('name', 'Name is required').notEmpty();
@@ -73,7 +74,7 @@ router.post('/new', (req, res) => {
 
 	else {
 
-		const image = new Image({ name: req.body.name, path: req.body.path, width: req.body.width, height: req.body.height, featured: req.body.featured, _item: req.body.item });
+		const image = new Image({ name: req.file.originalname, path: req.body.path, width: req.body.width, height: req.body.height, featured: req.body.featured, _item: req.body.item });
 		image.save().then(err => res.status(200).json(response(res, { image: image, err: err })));
 	}
 });
