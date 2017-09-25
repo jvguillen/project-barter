@@ -1,4 +1,5 @@
 [{
+  "_id" : {"$oid": "59a8ccefb2f86e3e684dd075"},
   "name": "Camera",
   "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
   "_user": {"$oid": "5999f68a792f141ef95310be"},
@@ -7,6 +8,7 @@
   "updated" : { "$timestamp": { "t": 30, "i": 1 } }
 },
 {
+  "_id" : {"$oid": "59a8ccefb2f86e3e684dd076"},
   "name": "Coffee Table",
   "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
   "_user": {"$oid": "5999f9f82738f11fb7d03c7b"},
@@ -15,6 +17,7 @@
   "updated" : { "$timestamp": { "t": 30, "i": 1 } }
 },
 {
+  "_id" : {"$oid": "59a8ccefb2f86e3e684dd077"},
   "name": "Chair",
   "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
   "_user": {"$oid": "5999f9f82738f11fb7d03c7b"},
@@ -23,6 +26,7 @@
   "updated" : { "$timestamp": { "t": 30, "i": 1 } }
 },
 {
+  "_id" : {"$oid": "59a8ccefb2f86e3e684dd078"},
   "name": "Eggs",
   "images": ["path-to-image.png", "path-to-image-2.png", "path-to-image-3.png"],
   "_user": {"$oid": "5999f68a792f141ef95310be"},
