@@ -3,6 +3,7 @@
     "rules": {
       "import/no-dynamic-require": 1,
       "linebreak-style": 0,
-      "no-shadow": ["error", { "allow": ["done", "err"] }]
+      "no-shadow": ["error", { "allow": ["done", "err"] }],
+      "no-underscore-dangle": 0
     }
 }
