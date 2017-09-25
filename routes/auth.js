@@ -7,7 +7,7 @@ const router = express.Router({ mergeParams: true });
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/google/callback', passport.authenticate('google', {
-  successRedirect: '/api/v1/users/profile',
+  successRedirect: '/api/users/profile',
   failureRedirect: '/',
 }));
 
@@ -15,7 +15,7 @@ router.get('/google/callback', passport.authenticate('google', {
 router.get('/facebook', passport.authenticate('facebook', { scope: 'email' }));
 
 router.get('/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/api/v1/users/profile',
+  successRedirect: '/api/users/profile',
   failureRedirect: '/',
 }));
 

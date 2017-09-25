@@ -45,10 +45,10 @@ app.use(passport.session());
 require('./handlers/passport')(passport);
 
 // enable routes
-app.use('/api/:version/', index);
-app.use('/api/:version/auth', auth);
-app.use('/api/:version/users', users);
-app.use('/api/:version/items', items);
+app.use('/api/', index);
+app.use('/api/auth', auth);
+app.use('/api/users', users);
+app.use('/api/items', items);
 // add new routes before this line
 
 // catch 404 and forward to error handler
