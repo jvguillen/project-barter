@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
 			_user: req.body.user ,
 			active: true
 		};
-		const item = new Item(newitem);
+		const item = new Item(newItem);
 		item.save().then(item => res.status(200).json(response(res, item)));
 	}
 });
