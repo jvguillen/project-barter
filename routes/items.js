@@ -30,20 +30,19 @@ router.post('/', (req, res) => {
 	// validate input fields
 	// this needs to return appropriate error code
 	req.checkBody('name', 'The name is required').notEmpty();
-  req.checkBody('quality', 'You must supply the quality of the item').notEmpty();
+	req.checkBody('quality', 'You must supply the quality of the item').notEmpty();
 
 	const err = req.validationErrors();
 
 	if(err) { return res.status(400).json(response(res, err, 'Bad Request')); }
 
 	else {
-		const newItem = {
+		const item = new Item({
 			name: req.body.name,
 			quality: req.body.quality,
 			_user: req.body.user ,
 			active: true
-		};
-		const item = new Item(newItem);
+		});
 		item.save().then(item => res.status(200).json(response(res, item)));
 	}
 });
