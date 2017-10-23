@@ -17,11 +17,11 @@ const storage = multer.diskStorage({
     	req.body.path = path;
 
     	if(! fs.existsSync(path)) { fs.mkdir(path) }
-        
+
         cb(null, path) // destiny folder
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname) // rewrite filename 
+        cb(null, file.originalname) // rewrite filename
   }
 });
 var upload = multer({ storage: storage });
@@ -41,7 +41,7 @@ router.get('/:id', (req, res) => {
 });
 
 /* POST create a new image */
-router.post('/', upload.single('image'), (req, res) => {
+router.post('/', upload.array('image', 10), (req, res) => {
 
 	// validate input fields
 	req.checkBody('width', 'Image width is required').notEmpty();
@@ -54,16 +54,19 @@ router.post('/', upload.single('image'), (req, res) => {
 
 	else {
 
-		const image = new Image({ 
-			name: req.file.originalname,
-			path: req.body.path,
-			width: req.body.width,
-			height: req.body.height,
-			featured: req.body.featured,
-			_item: req.body.item
+		req.files.forEach((file) => {
+			const image = new Image({
+				name: file.originalname,
+				path: req.body.path,
+				width: req.body.width,
+				height: req.body.height,
+				featured: req.body.featured,
+				_item: req.body.item
+			});
+			image.save();
 		});
-
-		image.save().then(err => res.status(200).json(response(res, { image: image, err: err })));
+		
+		res.status(200).json(response(res, { err: err } ));
 	}
 });
 
